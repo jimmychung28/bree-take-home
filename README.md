@@ -1,5 +1,11 @@
 A scalable full stack web application that screens customers against the publicly available OFAC Specially Designated Nationals (SDN) list Application availible here https://bree-take-home.vercel.app/
 
+# Tech Stack
+
+NextJS (App Router), Typescript, Tailwind
+
+Notable packages: React Hook Form
+
 # Steps to use
 
 1. Enter name, birth year, and country of user.
