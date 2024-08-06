@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import {useState} from 'react'; 
 import type { FormValues } from '../utils/types';
 import { query } from '@/utils/query';
+import Modal from 'react-modal';
 
 export default function Home() {
 
@@ -16,6 +17,8 @@ export default function Home() {
         fetched: boolean;
     }>>({fetched: false});
 
+  const [isModalOpen, setModalIsOpen] = useState(false);
+
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
 
 
@@ -23,7 +26,7 @@ export default function Home() {
 
     if(!response?.error) {
       setResult({...response, fetched: true});
-      alert((response.nameMatches || response.dobMatches || response.countryMatches) ? 'Hit' : 'Clear');
+      setModalIsOpen(true);
     }
 
   };
@@ -75,6 +78,23 @@ export default function Home() {
                 Submit
               </button>
             </form>
+            <Modal
+              isOpen={isModalOpen}
+              onRequestClose={()=>setModalIsOpen(false)}
+              contentLabel="Query Result"
+              className="bg-white p-6 rounded shadow-lg max-w-md mx-auto mt-20"
+              overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+            >
+              <h2 className="text-xl font-semibold mb-4">{result.nameMatches || result.dobMatches || result.countryMatches ? 'Hit' : 'Clear'}</h2>
+              <div className="mb-4">
+                <p>Full Name Match: {result.nameMatches ? "✅" : "❌"}</p>
+                <p>Birth Year Match: {result.dobMatches ? "✅" : "❌"}</p>
+                <p>Country Match: {result.countryMatches ? "✅" : "❌"}</p>
+              </div>
+              <button onClick={()=>setModalIsOpen(false)} className="w-full px-4 py-2 bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Close
+              </button>
+            </Modal>
     </main>
   );
 }
