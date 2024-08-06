@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const { fullName, birthYear, country } = body;
 
     try{
-      const response = await fetch('https://api.ofac-api.com/v4/search', {
+      const response = await fetch(`${process.env.OFAC_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
