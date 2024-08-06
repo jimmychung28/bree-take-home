@@ -9,6 +9,7 @@ type FormInput = {
     id: string;
     type: string;
     required: string;
+    matchKey: string;
 };
 
 export type FormMap = {
@@ -21,18 +22,21 @@ const FORM_MAP: FormMap = {
         id: formFields.fullName,
         type: 'text',
         required: 'Full Name is required',
+        matchKey: "nameMatches"
     },
     [formFields.birthYear]: {
         label: 'Birth Year',
         id: formFields.birthYear,
         type: 'number',
         required: 'Birth Year is required',
+        matchKey: "dobMatches"
     },
     [formFields.country]: {
         label: 'Country',
         id: formFields.country,
         type: 'text',
         required: 'Country is required',
+        matchKey: "countryMatches"
     },
 };
 

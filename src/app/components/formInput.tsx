@@ -13,6 +13,7 @@ type FormInputProps = {
     errors: any;
     register: any;
     result: any;
+    matchKey: string;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -22,7 +23,8 @@ const FormInput: React.FC<FormInputProps> = ({
     required,
     errors,
     register,
-    result
+    result,
+    matchKey
     }) => {
 
     if (type === 'number') {
@@ -36,7 +38,7 @@ const FormInput: React.FC<FormInputProps> = ({
                               {...register(stringToEnum(id), { required, valueAsNumber: true })}
                               className="mt-1 mr-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
-                            {result?.fetched? <p> {result?.nameMatches ? "✅" : "❌"}</p> : null}
+                            {result?.fetched? <p> {result?.[matchKey] ? "✅" : "❌"}</p> : null}
                 </div>
                 {errors[id] && <p className="mt-2 text-sm text-red-600">{errors[id].message}</p>}
             </div>
@@ -51,7 +53,7 @@ const FormInput: React.FC<FormInputProps> = ({
                               {...register(stringToEnum(id), { required })}
                               className="mt-1 mr-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             />
-                            {result?.fetched? <p> {result?.nameMatches ? "✅" : "❌"}</p> : null}
+                            {result?.fetched? <p> {result?.[matchKey] ? "✅" : "❌"}</p> : null}
                 </div>
                 {errors[id] && <p className="mt-2 text-sm text-red-600">{errors[id].message}</p>}
             </div>

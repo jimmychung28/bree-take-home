@@ -39,7 +39,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 bg-white shadow-md rounded">
               {Object.keys(FORM_MAP).map((key) => {
-                const { label, id, type, required } = FORM_MAP[key as keyof FormMap];
+                const { label, id, type, required,matchKey } = FORM_MAP[key as keyof FormMap];
                 return (
                   <FormInput 
                     key={id}
@@ -50,6 +50,7 @@ export default function Home() {
                     errors={errors}
                     register={register}
                     result={result}
+                    matchKey={matchKey}
                   />
                 );
               })}         
