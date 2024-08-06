@@ -3,3 +3,8 @@ export type FormValues = {
     birthYear: number;
     country: string;
 };
+
+export type Address = {
+    country: string;
+    [key: string]: any; 
+}
