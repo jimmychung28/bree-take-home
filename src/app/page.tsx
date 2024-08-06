@@ -2,18 +2,27 @@
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-type FormValues = {
-  fullName: string;
-  birthYear: number;
-  country: string;
-};
+import type { FormValues } from '../utils/types';
 
 export default function Home() {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+
+    const response = await fetch(`/api/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (response.ok) {
+      alert('Form submitted successfully!');
+    } else {
+      alert('Form submission failed!');
+    }
   };
 
   return (
