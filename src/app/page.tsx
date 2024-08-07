@@ -6,7 +6,6 @@ import type { FormValues } from '../utils/types';
 import { query } from '@/utils/query';
 import ResultModal from './components/modal';
 import FORM_MAP, {FormMap} from '@/utils/formMap';
-import { formFields } from '@/utils/formMap';
 import FormInput from './components/formInput';
 
 

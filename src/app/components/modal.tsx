@@ -9,6 +9,7 @@ type ResultModalProps = Readonly<{
   result: Partial<{ nameMatches: boolean; dobMatches: boolean; countryMatches: boolean; fetched: boolean; }>
 }>;
 
+Modal.setAppElement('body');
 
 
 const ResultModal: React.FC<ResultModalProps> = ({ isOpen, closeModal, result }) => {
